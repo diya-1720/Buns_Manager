@@ -33,6 +33,22 @@
   gap: 1.25rem;
 }
 
+/* Brand Row & Mobile Quick-Add */
+.topbar-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn-mobile-quick-add {
+  display: none !important;
+}
+
+.btn-desktop-add {
+  display: inline-flex !important;
+}
+
 /* Brand Section */
 .brand-section {
   display: flex;
@@ -1062,35 +1078,84 @@
 
 /* ==========================================================================
    Mobile Responsive Layout (< 840px)
-   ELIMINATES THE CHUNKY 2x3 BUTTON GRID!
+   ELIMINATES ALL OVERFLOW AND MESSY STACKING!
    ========================================================================== */
 @media (max-width: 840px) {
   .topbar-inner {
-    padding: 0.75rem 1rem;
-    gap: 0.65rem;
+    padding: 0.65rem 0.85rem;
+    gap: 0.55rem;
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Row 1: Brand on left, Main "+ Account" CTA on right */
-  .topbar-header-row {
-    display: flex;
+  /* Row 1: Brand on Left, Compact "+ New" on Right */
+  .topbar-brand-row {
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    gap: 0.5rem;
+  }
+
+  .brand-section {
+    min-width: 0;
+    gap: 0.55rem;
+  }
+
+  .brand-logo-mark {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+
+  .brand-logo-mark svg {
+    width: 24px;
+    height: 24px;
   }
 
   .brand-title {
-    font-size: 1.65rem;
+    font-size: 1.45rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile Quick Add on right of Row 1 (Never overflows!) */
+  .btn-mobile-quick-add {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    box-shadow: 2px 2px 0px var(--ink-solid);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .btn-quick-plus {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  /* Hide the duplicate Desktop Add Button in Row 3 on mobile */
+  .btn-desktop-add {
+    display: none !important;
   }
 
   /* Row 2: Search */
   .search-container {
     max-width: 100%;
     width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Row 3: Horizontal clean swipeable action tools (NO CHUNKY GRID!) */
+  /* Row 3: Horizontal clean swipeable action tools */
   .topbar-actions {
     display: flex;
     align-items: center;
@@ -1099,6 +1164,7 @@
     width: 100%;
     padding-bottom: 0.2rem;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .topbar-actions::-webkit-scrollbar {
@@ -1106,14 +1172,17 @@
   }
 
   .topbar-actions .btn {
-    padding: 0.35rem 0.75rem;
-    font-size: 1.05rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 1.02rem;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .main-wrapper {
-    padding: 1.25rem 1rem 2.5rem;
-    gap: 1.35rem;
+    padding: 1rem 0.85rem 2.5rem;
+    gap: 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .filter-bar {
@@ -1128,7 +1197,7 @@
 
   .vault-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.15rem;
   }
 
   .service-quick-pick {
@@ -1148,5 +1217,20 @@
     max-height: 94vh;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     border-bottom: none;
+    box-shadow: 0 -4px 0px var(--ink-solid);
+  }
+}
+
+/* Extra small phone screens (< 390px) */
+@media (max-width: 390px) {
+  .brand-badge {
+    display: none !important;
+  }
+  .brand-title {
+    font-size: 1.35rem;
+  }
+  .btn-mobile-quick-add {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.95rem;
   }
 }

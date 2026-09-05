@@ -365,8 +365,11 @@ class PapierVaultApp {
       this.refreshVault();
     });
 
-    // Top action buttons
-    document.getElementById('btnOpenAddAccount').addEventListener('click', () => this.openAddAccountModal());
+    // Top action buttons (Desktop and Mobile)
+    ['btnOpenAddAccount', 'btnOpenAddAccountMobile'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', () => this.openAddAccountModal());
+    });
     document.getElementById('btnEmptyAdd').addEventListener('click', () => this.openAddAccountModal());
     document.getElementById('btnOpenGenerator').addEventListener('click', () => this.openGeneratorModal());
     document.getElementById('btnOpenSettings').addEventListener('click', () => this.openSettingsModal());

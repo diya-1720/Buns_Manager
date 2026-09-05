@@ -17,10 +17,10 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="css/design-tokens.css?v=4.1">
-  <link rel="stylesheet" href="css/base.css?v=4.1">
-  <link rel="stylesheet" href="css/components.css?v=4.1">
-  <link rel="stylesheet" href="css/animations.css?v=4.1">
+  <link rel="stylesheet" href="css/design-tokens.css?v=4.2">
+  <link rel="stylesheet" href="css/base.css?v=4.2">
+  <link rel="stylesheet" href="css/components.css?v=4.2">
+  <link rel="stylesheet" href="css/animations.css?v=4.2">
 </head>
 <body>
 
@@ -30,8 +30,8 @@
     <!-- Top Bar -->
     <header class="topbar" role="banner">
       <div class="topbar-inner">
-        <!-- Row 1: Brand & Top CTA -->
-        <div class="topbar-header-row">
+        <!-- Row 1: Brand & Top Mobile Quick Add -->
+        <div class="topbar-brand-row">
           <a href="#" class="brand-section" id="brandLogo" aria-label="BUNS MANAGER Home">
             <div class="brand-logo-mark" id="brandLogoIcon"></div>
             <div class="brand-text">
@@ -42,10 +42,10 @@
             </div>
           </a>
 
-          <!-- Quick Add on Mobile Screen Header -->
-          <button type="button" id="btnOpenAddAccount" class="btn btn-primary" title="Add New Account">
-            <span id="plusIconSpan"></span>
-            <span>+ Account</span>
+          <!-- Mobile Only Quick Add Button (Compact, never overflows) -->
+          <button type="button" id="btnOpenAddAccountMobile" class="btn btn-primary btn-mobile-quick-add" title="Add New Account">
+            <span class="btn-quick-plus">+</span>
+            <span>New</span>
           </button>
         </div>
 
@@ -63,8 +63,14 @@
           <button type="button" id="searchClearBtn" class="search-clear-btn hidden" aria-label="Clear search">✕</button>
         </div>
 
-        <!-- Secondary Action Tools (Neat Horizontal Row) -->
+        <!-- Action Tools (Neat Horizontal Row) -->
         <div class="topbar-actions">
+          <!-- Desktop Add Button (Prominent on laptop/desktop) -->
+          <button type="button" id="btnOpenAddAccount" class="btn btn-primary btn-desktop-add" title="Add New Account">
+            <span id="plusIconSpan"></span>
+            <span>New Account</span>
+          </button>
+
           <button type="button" id="btnOpenGenerator" class="btn btn-accent-sky" title="Open Password Generator">
             <span id="keyIconSpan"></span>
             <span>Generator</span>
