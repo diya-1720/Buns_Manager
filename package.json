@@ -6,8 +6,7 @@
   "main": "server.mjs",
   "scripts": {
     "dev": "node server.mjs",
-    "start": "node server.mjs",
-    "build": "echo 'BUNS MANAGER is a zero-build web app and is ready to deploy!'"
+    "start": "node server.mjs"
   },
   "keywords": [
     "password-manager",
@@ -16,5 +15,5 @@
     "security"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
