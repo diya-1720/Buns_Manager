@@ -1,0 +1,20 @@
+{
+  "name": "buns-manager",
+  "version": "1.0.0",
+  "description": "BUNS MANAGER — Personal Password Vault",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "build": "echo 'BUNS MANAGER is a zero-build web app and is ready to deploy!'"
+  },
+  "keywords": [
+    "password-manager",
+    "vault",
+    "pwa",
+    "security"
+  ],
+  "author": "",
+  "license": "ISC"
+}
