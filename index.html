@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BUNS MANAGER — Personal Password Vault</title>
+  <meta name="description" content="A private, handwritten paper & neo-brutalist personal password manager. Light sky blue and pastel yellow palette, mobile-ready, offline capable, zero lag.">
+  
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#FEF08A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="BUNS MANAGER">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/design-tokens.css?v=4.0">
+  <link rel="stylesheet" href="css/base.css?v=4.0">
+  <link rel="stylesheet" href="css/components.css?v=4.0">
+  <link rel="stylesheet" href="css/animations.css?v=4.0">
+</head>
+<body>
+
+  <!-- Main App Shell -->
+  <div class="app-container" id="appContainer">
+    
+    <!-- Top Bar -->
+    <header class="topbar" role="banner">
+      <div class="topbar-inner">
+        <!-- Row 1: Brand & Top CTA -->
+        <div class="topbar-header-row">
+          <a href="#" class="brand-section" id="brandLogo" aria-label="BUNS MANAGER Home">
+            <div class="brand-logo-mark" id="brandLogoIcon"></div>
+            <div class="brand-text">
+              <span class="brand-title">
+                BUNS MANAGER
+                <span class="brand-badge">Vault</span>
+              </span>
+            </div>
+          </a>
+
+          <!-- Quick Add on Mobile Screen Header -->
+          <button type="button" id="btnOpenAddAccount" class="btn btn-primary" title="Add New Account">
+            <span id="plusIconSpan"></span>
+            <span>+ Account</span>
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <span class="search-icon" id="searchIconWrap"></span>
+          <input 
+            type="search" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search accounts, usernames, tags... (/)"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button type="button" id="searchClearBtn" class="search-clear-btn hidden" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- Secondary Action Tools (Neat Horizontal Row) -->
+        <div class="topbar-actions">
+          <button type="button" id="btnOpenGenerator" class="btn btn-accent-sky" title="Open Password Generator">
+            <span id="keyIconSpan"></span>
+            <span>Generator</span>
+          </button>
+
+          <button type="button" id="btnLockVault" class="btn btn-secondary" title="Lock Vault">
+            <span id="lockStatusIconSpan"></span>
+            <span id="lockBtnText">Set Lock</span>
+          </button>
+
+          <button type="button" id="btnOpenSettings" class="btn btn-secondary" title="Backup & Settings">
+            <span id="settingsIconSpan"></span>
+            <span>Backup</span>
+          </button>
+
+          <button type="button" id="btnInstallApp" class="btn btn-install-pwa hidden" title="Install as Mobile / Desktop App">
+            <span>📲</span>
+            <span>Install App</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace (Spacious Handwritten Paper Ledger) -->
+    <main class="main-wrapper" role="main">
+
+      <!-- Category Filter Pills -->
+      <nav class="filter-bar" aria-label="Account Filters">
+        <div class="filter-pills" id="filterPillsContainer">
+          <button type="button" class="pill-btn active" data-filter="all">
+            <span>All Accounts</span>
+            <span class="pill-badge" id="badgeAll">0</span>
+          </button>
+          <button type="button" class="pill-btn" data-filter="gmail">
+            <span>Gmail</span>
+            <span class="pill-badge" id="badgeGmail">0</span>
+          </button>
+          <button type="button" class="pill-btn" data-filter="instagram">
+            <span>Instagram</span>
+            <span class="pill-badge" id="badgeInstagram">0</span>
+          </button>
+          <button type="button" class="pill-btn" data-filter="snapchat">
+            <span>Snapchat</span>
+            <span class="pill-badge" id="badgeSnapchat">0</span>
+          </button>
+          <button type="button" class="pill-btn" data-filter="github">
+            <span>GitHub</span>
+            <span class="pill-badge" id="badgeGitHub">0</span>
+          </button>
+          <button type="button" class="pill-btn" data-filter="discord">
+            <span>Discord</span>
+            <span class="pill-badge" id="badgeDiscord">0</span>
+          </button>
+          <button type="button" class="pill-btn" data-filter="websites">
+            <span>Websites</span>
+            <span class="pill-badge" id="badgeWebsites">0</span>
+          </button>
+        </div>
+
+        <div class="sort-container">
+          <select id="sortSelector" aria-label="Sort accounts">
+            <option value="recent">Sort: Recently Added</option>
+            <option value="service-asc">Sort: Service Name (A-Z)</option>
+            <option value="label-asc">Sort: Account Label</option>
+          </select>
+        </div>
+      </nav>
+
+      <!-- Accounts Grid -->
+      <section class="vault-grid" id="vaultGrid" aria-label="Stored credentials">
+        <!-- Rendered dynamically -->
+      </section>
+
+      <!-- Clean Empty State -->
+      <div id="emptyVaultState" class="empty-vault-state hidden">
+        <div class="empty-icon-wrap" id="emptyStateIcon"></div>
+        <h3 class="empty-title">BUNS MANAGER is ready</h3>
+        <p class="empty-desc">Your personal offline notebook is clean and ready. Store your multiple Gmails, Instagram, Snapchat, GitHub, Discord, or website accounts with zero lag.</p>
+        <button type="button" id="btnEmptyAdd" class="btn btn-primary" style="padding: 0.75rem 1.6rem; font-size: 1.35rem;">
+          + Store Your First Account
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: Add / Edit Account
+       ========================================================================= -->
+  <div id="modalAccount" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="modalAccountTitle">Add Account</h2>
+          <span class="modal-subtitle">Save a credential into your personal vault</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close dialog">✕</button>
+      </div>
+
+      <form id="accountForm" class="modal-body">
+        <input type="hidden" id="accountEditId" value="">
+
+        <!-- Quick Pick Presets -->
+        <div class="form-group">
+          <label class="form-label">
+            <span>Select App Preset</span>
+            <span class="form-label-hint">tap icon</span>
+          </label>
+          <div class="service-quick-pick" id="serviceQuickPick">
+            <button type="button" class="service-pick-btn active" data-service="Gmail" data-cat="gmail" data-url="https://mail.google.com">
+              <span class="service-pick-icon" data-icon="gmail"></span>
+              <span class="service-pick-name">Gmail</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="Instagram" data-cat="instagram" data-url="https://www.instagram.com">
+              <span class="service-pick-icon" data-icon="instagram"></span>
+              <span class="service-pick-name">Instagram</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="Snapchat" data-cat="snapchat" data-url="https://accounts.snapchat.com">
+              <span class="service-pick-icon" data-icon="snapchat"></span>
+              <span class="service-pick-name">Snapchat</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="GitHub" data-cat="github" data-url="https://github.com">
+              <span class="service-pick-icon" data-icon="github"></span>
+              <span class="service-pick-name">GitHub</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="Discord" data-cat="discord" data-url="https://discord.com">
+              <span class="service-pick-icon" data-icon="discord"></span>
+              <span class="service-pick-name">Discord</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="Spotify" data-cat="websites" data-url="https://www.spotify.com">
+              <span class="service-pick-icon" data-icon="spotify"></span>
+              <span class="service-pick-name">Spotify</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="Amazon" data-cat="websites" data-url="https://www.amazon.com">
+              <span class="service-pick-icon" data-icon="amazon"></span>
+              <span class="service-pick-name">Amazon</span>
+            </button>
+            <button type="button" class="service-pick-btn" data-service="Custom" data-cat="websites" data-url="">
+              <span class="service-pick-icon" data-icon="globe"></span>
+              <span class="service-pick-name">Custom</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group" id="customServiceNameGroup" style="display: none;">
+          <label for="inputServiceName" class="form-label">Custom Service / Website Name</label>
+          <input type="text" id="inputServiceName" class="form-input" placeholder="e.g. Netflix, Steam, Notion, Work Portal">
+        </div>
+
+        <!-- Account Label -->
+        <div class="form-group">
+          <label for="inputAccountLabel" class="form-label">
+            <span>Account Label / Tag</span>
+            <span class="form-label-hint">e.g. "Personal", "Work", "Secondary"</span>
+          </label>
+          <input type="text" id="inputAccountLabel" class="form-input" placeholder="Personal, Work, Secondary, Gaming" required>
+        </div>
+
+        <!-- Username or Email -->
+        <div class="form-group">
+          <label for="inputUsername" class="form-label">Username or Email</label>
+          <input type="text" id="inputUsername" class="form-input" placeholder="your.name@gmail.com or @handle" required autocomplete="off">
+        </div>
+
+        <!-- Password with Quick Inline Generate -->
+        <div class="form-group">
+          <div class="form-label">
+            <span>Password</span>
+            <button type="button" id="btnInlineGenerate" class="field-tool-btn" style="padding: 0.15rem 0.55rem; font-size: 0.95rem;">
+              ⚡ Auto-Generate
+            </button>
+          </div>
+          <div class="form-input-wrapper">
+            <input type="text" id="inputPassword" class="form-input" placeholder="Enter or generate password" required autocomplete="off" spellcheck="false">
+            <button type="button" id="btnToggleFormPasswordVis" class="input-suffix-btn" title="Toggle visibility">👁️</button>
+          </div>
+        </div>
+
+        <!-- Login URL -->
+        <div class="form-group">
+          <label for="inputUrl" class="form-label">Login URL (Optional)</label>
+          <input type="url" id="inputUrl" class="form-input" placeholder="https://..." value="https://mail.google.com">
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label for="inputNotes" class="form-label">Private Notes / Recovery (Optional)</label>
+          <textarea id="inputNotes" class="form-textarea" placeholder="Recovery codes, pin, backup questions..."></textarea>
+        </div>
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" form="accountForm" class="btn btn-primary" id="btnSaveAccount">Save Account</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: Interactive Password Generator
+       ========================================================================= -->
+  <div id="modalGenerator" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">Password Generator</h2>
+          <span class="modal-subtitle">Generate high-entropy random passwords</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="generator-output-box">
+          <span id="genPasswordDisplay" class="generator-result">••••••••••••</span>
+          <div style="display: flex; gap: 0.4rem;">
+            <button type="button" id="btnGenRegenerate" class="field-tool-btn">↻ Re-roll</button>
+            <button type="button" id="btnGenCopy" class="btn btn-primary" style="padding: 0.3rem 0.75rem; font-size: 1.05rem;">Copy</button>
+          </div>
+        </div>
+
+        <div class="slider-container">
+          <div class="slider-header">
+            <label for="sliderLength" class="form-label">Length</label>
+            <span id="sliderLengthVal" class="slider-val-badge">18</span>
+          </div>
+          <input type="range" id="sliderLength" class="range-slider" min="8" max="64" value="18">
+        </div>
+
+        <div class="options-check-grid">
+          <label class="check-label">
+            <input type="checkbox" id="checkUpper" checked>
+            <span>Uppercase (A-Z)</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="checkLower" checked>
+            <span>Lowercase (a-z)</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="checkNumbers" checked>
+            <span>Numbers (0-9)</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="checkSymbols" checked>
+            <span>Symbols (!@#$)</span>
+          </label>
+          <label class="check-label" style="grid-column: span 2;">
+            <input type="checkbox" id="checkAvoidAmbiguous">
+            <span>Avoid Ambiguous (0, O, 1, l, I)</span>
+          </label>
+        </div>
+
+        <div style="border-top: 2px dashed var(--ink-solid); padding-top: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="font-size: 1.15rem; font-weight: 700; color: var(--ink-solid);">Need a word phrase?</span>
+          <button type="button" id="btnGenPassphrase" class="pill-btn">
+            Generate Passphrase
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: Lock & Backup
+       ========================================================================= -->
+  <div id="modalSettings" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">Lock & Backup</h2>
+          <span class="modal-subtitle">Secure and export your private passwords</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Master Password Setup -->
+        <div style="background-color: var(--yellow-200); border: var(--border-neo); border-radius: var(--radius-sm); padding: 1.15rem; box-shadow: var(--shadow-neo-xs);">
+          <h4 style="margin-bottom: 0.25rem; font-size: 1.35rem;">Master Lock Password</h4>
+          <p style="font-size: 1.05rem; color: var(--ink-muted); margin-bottom: 0.75rem;">
+            Lock your vault so nobody on this device can open your passwords without your key.
+          </p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <input type="password" id="inputMasterPasswordSet" class="form-input" placeholder="Enter Master Password" style="flex: 1; min-width: 180px;">
+            <button type="button" id="btnSaveMasterPassword" class="btn btn-primary" style="white-space: nowrap;">
+              Save Lock
+            </button>
+          </div>
+        </div>
+
+        <!-- Export -->
+        <div style="margin-top: 0.5rem;">
+          <h4 style="margin-bottom: 0.25rem; font-size: 1.35rem;">Export Passwords</h4>
+          <p style="font-size: 1.05rem; color: var(--ink-muted); margin-bottom: 0.75rem;">
+            Download a backup file to keep safe offline or move to your phone.
+          </p>
+          <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+            <button type="button" id="btnExportJSON" class="btn btn-secondary">
+              <span id="exportJsonIcon"></span> Export JSON
+            </button>
+            <button type="button" id="btnExportCSV" class="btn btn-secondary">
+              <span id="exportCsvIcon"></span> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Import -->
+        <div style="border-top: 2px dashed var(--ink-solid); padding-top: 0.85rem;">
+          <h4 style="margin-bottom: 0.25rem; font-size: 1.35rem;">Import Backup</h4>
+          <input type="file" id="inputImportFile" accept=".json" style="display: none;">
+          <button type="button" id="btnTriggerImport" class="btn btn-secondary">
+            <span id="importIconSpan"></span> Select Backup (.json)
+          </button>
+        </div>
+
+        <!-- Clear Vault -->
+        <div style="border-top: 2px dashed var(--ink-solid); padding-top: 0.85rem;">
+          <button type="button" id="btnClearVault" class="btn" style="background-color: var(--rose-bg); color: var(--rose-text); border: var(--border-neo);">
+            Clear All Stored Passwords
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       LOCK SCREEN OVERLAY
+       ========================================================================= -->
+  <div id="lockScreen" class="lock-screen hidden">
+    <div class="lock-card">
+      <div class="lock-icon-halo" id="lockHaloIcon"></div>
+      <h2 class="lock-title">BUNS MANAGER LOCKED</h2>
+      <p class="lock-subtitle">Enter your Master Password to decrypt your stored accounts.</p>
+      
+      <form id="unlockForm" class="lock-form">
+        <input 
+          type="password" 
+          id="inputUnlockPassword" 
+          class="form-input" 
+          placeholder="ENTER MASTER PASSWORD" 
+          required 
+          autofocus
+        >
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 1.35rem;">
+          Unlock Vault
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Application Script -->
+  <script type="module" src="js/app.js?v=4.0"></script>
+</body>
+</html>

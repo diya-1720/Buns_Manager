@@ -1,0 +1,78 @@
+:root {
+  /* ==========================================================================
+     BUNS MANAGER — Handwritten Paper & Neo-Brutalism Design Tokens
+     Exclusive Palette: Light Sky Blue & Aesthetic Pastel Yellow (Minimal white)
+     Typography: Caveat & Caveat Brush (Handwriting Type Family)
+     ========================================================================== */
+
+  /* Canvas: Light Sky Blue Paper */
+  --paper-canvas: #E0F2FE;
+  --paper-canvas-grid: rgba(2, 132, 199, 0.12);
+  --paper-margin-line: rgba(239, 68, 68, 0.22); /* Retro red margin rule */
+
+  /* Primary Surfaces: Aesthetic Pastel Butter Yellow & Aesthetic Off-White */
+  --paper-surface: #FEF08A;
+  --paper-surface-light: #FEF9C3;
+  --paper-card: #FEF9C3;
+  --paper-card-alt: #E0F2FE;
+  --paper-subtle: #FDE047;
+  --paper-offwhite: #FAF8F5;
+  --yellow-50: #FAF8F5; /* Aesthetic solid off-white paper for dialogs */
+
+  /* Sky Blue Accents */
+  --sky-100: #E0F2FE;
+  --sky-200: #BAE6FD;
+  --sky-300: #7DD3FC;
+  --sky-400: #38BDF8;
+  --sky-500: #0284C7;
+  --sky-600: #0369A1;
+
+  /* Pastel Yellow Accents */
+  --yellow-100: #FEF9C3;
+  --yellow-200: #FEF08A;
+  --yellow-300: #FDE047;
+  --yellow-400: #FACC15;
+  --yellow-800: #713F12;
+
+  /* Minimal off-white strictly for input interior */
+  --paper-input-bg: #FDFFF5;
+
+  /* Solid Ink Borders & Shadows */
+  --ink-solid: #111827;
+  --ink-muted: #374151;
+  --ink-subtle: #4B5563;
+
+  /* Semantic Alerts */
+  --emerald-bg: #A7F3D0;
+  --emerald-text: #064E3B;
+  --rose-bg: #FECDD3;
+  --rose-text: #881337;
+
+  /* Neo-Brutalist Paper Borders */
+  --border-neo: 2px solid var(--ink-solid);
+  --border-neo-thick: 2.5px solid var(--ink-solid);
+  --border-neo-thin: 1.5px solid var(--ink-solid);
+
+  /* Tactile Hard Drop Shadows */
+  --shadow-neo-xs: 2px 2px 0px var(--ink-solid);
+  --shadow-neo-sm: 3px 3px 0px var(--ink-solid);
+  --shadow-neo-md: 4px 4px 0px var(--ink-solid);
+  --shadow-neo-lg: 6px 6px 0px var(--ink-solid);
+  --shadow-neo-hover: 5px 5px 0px var(--ink-solid);
+  --shadow-neo-active: 1px 1px 0px var(--ink-solid);
+
+  /* Handwriting Typography Family */
+  --font-hand: 'Caveat', cursive;
+  --font-hand-brush: 'Caveat Brush', 'Caveat', cursive;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-neo: 0.12s cubic-bezier(0.2, 0, 0, 1);
+}
