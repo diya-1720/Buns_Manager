@@ -105,6 +105,26 @@ export const ICONS = {
     </svg>
   `,
 
+  bunny: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 11V4a2 2 0 0 1 4 0v7" fill="#FEF9C3" stroke="currentColor"/>
+      <path d="M9 5v4" stroke="#F472B6" stroke-width="1.3"/>
+      <path d="M13 11V4a2 2 0 0 1 4 0v7" fill="#FEF9C3" stroke="currentColor"/>
+      <path d="M15 5v4" stroke="#F472B6" stroke-width="1.3"/>
+      <circle cx="12" cy="14" r="6.5" fill="#FAF8F5" stroke="currentColor"/>
+      <circle cx="8" cy="15.5" r="1.2" fill="#FBCFE8" stroke="none"/>
+      <circle cx="16" cy="15.5" r="1.2" fill="#FBCFE8" stroke="none"/>
+      <circle cx="9.8" cy="13.2" r="0.8" fill="currentColor" stroke="none"/>
+      <circle cx="14.2" cy="13.2" r="0.8" fill="currentColor" stroke="none"/>
+      <path d="M11.5 15h1l-.5.6z" fill="#F472B6" stroke="none"/>
+      <path d="M10.6 16.2c.4.4 1 .4 1.4 0 .4.4 1 .4 1.4 0" stroke="currentColor" stroke-width="1.2"/>
+      <line x1="5.5" y1="13.8" x2="7.5" y2="14.2" stroke="currentColor" stroke-width="1"/>
+      <line x1="5.5" y1="15.5" x2="7.5" y2="15.2" stroke="currentColor" stroke-width="1"/>
+      <line x1="18.5" y1="13.8" x2="16.5" y2="14.2" stroke="currentColor" stroke-width="1"/>
+      <line x1="18.5" y1="15.5" x2="16.5" y2="15.2" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  `,
+
   shield: `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>

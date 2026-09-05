@@ -43,9 +43,9 @@
 }
 
 .brand-logo-mark {
-  width: 42px;
-  height: 42px;
-  background-color: var(--sky-200);
+  width: 44px;
+  height: 44px;
+  background-color: var(--yellow-200);
   border: var(--border-neo);
   border-radius: var(--radius-sm);
   display: flex;
@@ -57,12 +57,12 @@
 }
 
 .brand-logo-mark svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .brand-section:hover .brand-logo-mark {
-  transform: rotate(-4deg) scale(1.05);
+  transform: rotate(-4deg) scale(1.08);
 }
 
 .brand-title {

@@ -81,7 +81,7 @@ class PapierVaultApp {
    * Inject vector icons into static DOM elements
    */
   bindIcons() {
-    document.getElementById('brandLogoIcon').innerHTML = ICONS.shield;
+    document.getElementById('brandLogoIcon').innerHTML = ICONS.bunny;
     document.getElementById('searchIconWrap').innerHTML = ICONS.search;
     document.getElementById('keyIconSpan').innerHTML = ICONS.key;
     document.getElementById('settingsIconSpan').innerHTML = ICONS.download;

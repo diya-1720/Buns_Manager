@@ -78,6 +78,7 @@ Designed specifically for personal use across high-frequency platforms — inclu
 - **Seamless JSON Restoration**: Safely import existing backups anytime without overwriting duplicate entries.
 
 ### 📱 6. Progressive Web App (PWA) & Offline First
+- **Signature Bunny Face App Icon**: Custom neo-brutalist bunny face vector icon (`icon.svg` & `favicon.svg`) designed for mobile home screens, bookmarks, and browser tabs.
 - Pre-caches core styles, scripts, and fonts using a **Network-First Service Worker**.
 - Functions seamlessly when disconnected from Wi-Fi or cellular networks.
 - Full-screen standalone display with custom home screen icons and theme matching.
@@ -173,6 +174,8 @@ Native vector glyphs and dedicated color badges are pre-packaged for common cons
 ```
 Buns_Manager/
 ├── index.html              # Clean single-page application shell
+├── favicon.svg             # Crisp 64x64 bunny face browser tab icon
+├── icon.svg                # 512x512 neo-brutalist bunny face app icon for PWA & mobile
 ├── manifest.json           # W3C Web App Manifest (PWA metadata & theme)
 ├── sw.js                   # Network-First Service Worker for 100% offline use
 ├── server.mjs              # Zero-dependency Node.js HTTP dev server (auto-port fallback)
